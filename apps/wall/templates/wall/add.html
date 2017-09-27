@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Review</title>
+</head>
+<body>
+    <header>
+        <span>Hi, </span><a href="/user/{{ current_user.id }}"> {{ current_user.first_name }}</a>
+        <a href="/logout">Logout</a>
+        <a href="/books">Home</a>
+    </header>
+    <hr>
+    <h3>Add A New Book Review</h3>
+    <form action="/create" method="post"> 
+        {% csrf_token %}
+        <ul style="width:100px; padding-left:50px;"> 
+            {{form3}}
+            <input value="Add Book and Review" type="submit">
+        </ul>
+    </form>
+</body>
+</html>

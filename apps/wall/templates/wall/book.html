@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Page</title>
+</head>
+<body>
+    <header>
+        <span>Hi, </span><a href="/user/{{ current_user.id }}"> {{ current_user.first_name }}</a>
+        <a href="/logout">Logout</a>
+        <a href="/add">Add a Book Review</a>
+        <a href="/books">Home</a>
+    </header>
+    <hr>
+    <h1>{{book.title}}</h1>
+        {% for author in authors %}  
+            <h2>Author: {{ author.name}}</h2>
+        {% endfor %}
+        <h3>Reviews </h3>
+        {%if reviews%}
+            {% for review in reviews %}
+                <span><a href="/user/{{ review.user.id }}">{{review.user.first_name}}</a>
+                    <span>says: {{review.notes}}</span>
+                </span> 
+                <p>Posted on {{ review.created_at }} {{ review.id }}</p>
+                {%if review.user == current_user %}
+                    <a href="/delete_review/{{ review.id }}">Delete this Review</a>
+                    <br>
+                    <br>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <form action="/review/{{book_number}}" method="post"> 
+            {% csrf_token %}
+            <ul style="width:100px; padding-left:50px;"> 
+                {{form4}}
+            <input value="Add Review" type="submit">
+</body>
+</html>

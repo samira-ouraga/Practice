@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register &amp; Login </title>
+</head>
+<body>
+   <h3>Register for an account</h3>
+    {%if messages%}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {%endfor%}
+    {%endif%}
+    <form action="/register" method="post"> 
+        {% csrf_token %}
+        <ul style="width:100px; padding-left:50px;"> 
+            {{form1}}
+            <input type="submit">
+        </ul>
+    </form>
+
+    <hr>
+    <br>
+    <h3>Already have an account? Login here</h3>
+    <form action="/login" method="post"> 
+        {% csrf_token %}
+        <ul style="width:100px; padding-left:50px;">
+            {{form2}}
+            <input type="submit">
+        </ul>
+    </form>
+</body>
+</html>
